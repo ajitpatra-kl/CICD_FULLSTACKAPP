@@ -20,7 +20,11 @@ pipeline {
 
     stages {
        
-
+        stage('Clean Workspace') {
+            steps {
+                cleanWs()
+            }
+        }
         stage('Build Frontend (Vite)') {
             steps {
                 dir("${env.FRONTEND_DIR}") {
