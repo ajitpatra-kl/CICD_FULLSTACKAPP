@@ -63,6 +63,12 @@ pipeline {
         stage('Build Backend (Spring Boot WAR)') {
             steps {
                 dir("${env.BACKEND_DIR}") {
+                    sh 'echo "--- Checking directory and pom.xml file ---"'
+                    sh 'pwd'      // Prints the current directory
+                    sh 'ls -la'   // Lists all files in detail
+                    sh 'echo "--- Displaying pom.xml content ---"'
+                    sh 'cat pom.xml' // This will print the entire file to the log
+                    sh 'echo "--- End of pom.xml content ---"'
                     sh 'mvn clean package'
                     sh "cp target/*.war ../../${BACKEND_WAR}"
                 }
