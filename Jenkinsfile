@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+     options {
+        // ADD THIS BLOCK TO PREVENT AUTOMATIC CHECKOUT
+        skipDefaultCheckout true
+    }
+
     tools {
         jdk 'JDK_HOME'
         maven 'MAVEN_HOME'
@@ -23,6 +28,11 @@ pipeline {
         stage('Clean Workspace') {
             steps {
                 cleanWs()
+            }
+        }
+     stage('Checkout') {
+            steps {
+                checkout scm
             }
         }
         stage('Build Frontend (Vite)') {
